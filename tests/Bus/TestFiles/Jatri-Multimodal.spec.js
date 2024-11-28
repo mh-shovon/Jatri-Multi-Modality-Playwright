@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
-const { ControllerPage } = require('./Bus/Controller/ControllerPage');
-const dataSet = JSON.parse(JSON.stringify(require('../tests/Bus/JsonFiles/UserInfo.json')));
+const { ControllerPage } = require('../Controller/ControllerPage');
+const dataSet = JSON.parse(JSON.stringify(require('../JsonFiles/UserInfo.json')));
 
 test('Test-1 :: Visit the website and login with valid OTP', async ({ page }) => {
     const controllerPage = new ControllerPage(page);
