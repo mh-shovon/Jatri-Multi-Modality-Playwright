@@ -1,6 +1,5 @@
 class LoginPage{
     constructor(page) {
-        this.page = page;
         this.loginInButton = page.locator("a button span");
         this.userPhoneNumber = page.locator("#mobile");
         this.getOtpButton = page.getByText('Get OTP');
