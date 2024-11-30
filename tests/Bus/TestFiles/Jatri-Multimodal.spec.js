@@ -38,7 +38,6 @@ test('Test-1 :: Visit the website and login with valid OTP', async ({ page }) =>
         }
     }
     console.log(`Retrieved OTP: ${otp}`);
-
     dataSet.userOtp = otp;
 
     await loginPage.enterValidOtp(dataSet.userOtp);
