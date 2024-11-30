@@ -1,4 +1,4 @@
-const { test, expect } = require('@playwright/test');
+const { test } = require('@playwright/test');
 const { ControllerPage } = require('../Controller/ControllerPage');
 const dataSet = JSON.parse(JSON.stringify(require('../JsonFiles/UserInfo.json')));
 const Redis = require('ioredis');
@@ -19,10 +19,19 @@ test('Test-1 :: Visit the website and login with valid OTP', async ({ page }) =>
     await loginPage.openLoginPage();
     await loginPage.enterValidPhoneNumber(dataSet.userPhoneNumber);
     await loginPage.clickOnGetOtpButton();
+
     console.log('Waiting for OTP...');
+
+    function delay(time) {
+        return new Promise(function(resolve) {
+            setTimeout(resolve, time)
+        });
+    }
+    await delay(10 * 1000);
+
     let otp;
     while (!otp) {
-        otp = await redis.get('auth-mm:cache:01983285059');
+        otp = await redis.get('auth-mm:cache:' + dataSet.userPhoneNumber);
         otp = JSON.parse(otp);
         if (!otp) {
             await new Promise(resolve => setTimeout(resolve, 60 * 1000));

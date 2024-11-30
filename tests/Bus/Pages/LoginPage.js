@@ -5,6 +5,7 @@ class LoginPage{
         this.userPhoneNumber = page.locator("#mobile");
         this.getOtpButton = page.getByText('Get OTP');
         this.otpField = page.locator("#otp");
+        this.confirmButton = page.getByText('Confirm');
     }
 
     async openLoginPage() {
@@ -20,7 +21,8 @@ class LoginPage{
     }
 
     async enterValidOtp(userOtp) {
-        await this.otpField.fill(userOtp)
+        await this.otpField.fill(userOtp);
+        await this.confirmButton.click();
     }
 }
 module.exports = { LoginPage };
