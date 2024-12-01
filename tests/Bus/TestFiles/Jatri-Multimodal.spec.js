@@ -1,12 +1,13 @@
 const { test } = require('@playwright/test');
 const { ControllerPage } = require('../Controller/ControllerPage');
 const dataSet = JSON.parse(JSON.stringify(require('../JsonFiles/UserInfo.json')));
+require('dotenv').config();
 const Redis = require('ioredis');
 
 const redis = new Redis({
-    host: '128.199.226.196',
-    port: 6379,
-    password: 'JfzjT!MtVDAJZSqSPFv5KWDERaxHm9EQDq9SsDQ0pKP4dh8iwVJ8a4ffBBIJI'
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+    password: process.env.REDIS_PASSWORD
 });
 
 test('Test-1 :: Visit the website and login with valid OTP', async ({ page }) => {
