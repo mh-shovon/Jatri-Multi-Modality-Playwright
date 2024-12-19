@@ -25,4 +25,5 @@ class LoginPage{
         await this.confirmButton.click();
     }
 }
+
 module.exports = { LoginPage };

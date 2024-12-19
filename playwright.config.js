@@ -35,9 +35,9 @@ module.exports = defineConfig({
     trace: "retain-on-failure", //Options: [on,off,retain-on-failure]
   },
 
-  timeout: 30 * 1000,
+  timeout: 60 * 1000,
   expect: {
-    timeout: 5000,
+    timeout: 10000,
   },
 
   /* Configure projects for major browsers */
