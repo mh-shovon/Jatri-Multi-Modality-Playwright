@@ -38,3 +38,7 @@ test('Test-1 :: Visit the website and login with valid OTP', async ({ page }) =>
         throw error;
     }
 });
+
+test('Test-2 :: Enter from city', async ({ page }) => {
+
+});
