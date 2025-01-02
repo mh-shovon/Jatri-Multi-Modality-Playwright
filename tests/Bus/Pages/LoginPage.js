@@ -13,7 +13,7 @@ class LoginPage{
     }
 
     async enterValidPhoneNumber(userPhoneNumber) {
-        await this.userPhoneNumber.fill(userPhoneNumber);
+        await this.userPhoneNumber.pressSequentially(userPhoneNumber);
     }
 
     async clickOnGetOtpButton() {

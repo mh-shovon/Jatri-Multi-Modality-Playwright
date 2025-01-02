@@ -9,10 +9,6 @@ class HomePage {
     async openHomepage() {
         await this.page.goto("https://dev-jatri.jatritech.com/");
     }
-
-    async setSearchData() {
-        await this.fromCity.type("Dha")
-    }
 }
 
-module.exports = { HomePage };
+module.exports = { HomePage }

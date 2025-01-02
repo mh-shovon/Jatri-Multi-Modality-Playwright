@@ -1,10 +1,17 @@
 const { test } = require('@playwright/test');
+test.describe.configure({ mode: 'serial' });
 const { ControllerPage } = require('../Controller/ControllerPage');
 const dataSet = JSON.parse(JSON.stringify(require('../JsonFiles/UserInfo.json')));
 //const { fetchOtpFromRedis } = require('../OTP/OtpGenerateFromRedis');
 const { fetchMostRecentOtpFromMongo } = require('../OTP/GerOtpFromDatabase')
 
-test('Test-1 :: Visit the website and login with valid OTP', async ({ page }) => {
+function delay(time) {
+    return new Promise(function(resolve) {
+        setTimeout(resolve, time)
+    });
+}
+
+test.beforeEach('Test-1 :: Visit the website and login with valid OTP', async ({ page }) => {
     const controllerPage = new ControllerPage(page);
 
     try {
@@ -18,14 +25,8 @@ test('Test-1 :: Visit the website and login with valid OTP', async ({ page }) =>
 
         console.log('Waiting for OTP...');
 
-        // function delay(time) {
-        //     return new Promise(function(resolve) {
-        //         setTimeout(resolve, time)
-        //     });
-        // }
-        // await delay(10 * 1000);
-
         // OTP from Redis -------->
+        // await delay(10 * 1000); [For redis use this wait]
         // const otp = await fetchOtpFromRedis(dataSet.userPhoneNumber);
         // await loginPage.enterValidOtp(otp);
 
@@ -39,6 +40,19 @@ test('Test-1 :: Visit the website and login with valid OTP', async ({ page }) =>
     }
 });
 
-test('Test-2 :: Enter from city', async ({ page }) => {
+test('Test-2 :: Enter search details for searching trips', async ({ page }) => {
+    const controllerPage = new ControllerPage(page);
 
+    try {
+        const searchPage = controllerPage.getSearchPage();
+        await delay(3 * 1000);
+        await searchPage.setFromCity();
+        await delay(3 * 1000);
+        await searchPage.setDestinationCity();
+        await delay(3 * 1000);
+        await searchPage.setJourneyDate();
+        await delay(3 * 1000);
+    } catch (error) {
+        console.error('Failed to set search Data', error);
+    }
 });
