@@ -34,7 +34,7 @@ test.skip('Test-1 :: Visit the website and login with valid OTP from Redis', asy
     }
 });
 
-test.beforeEach('Test-2 :: Visit the website and login with valid OTP from Database', async ({ page }) => {
+test.beforeAll('Test-2 :: Visit the website and login with valid OTP from Database', async ({ page }) => {
     const controllerPage = new ControllerPage(page);
 
     try {
