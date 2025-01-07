@@ -20,6 +20,9 @@ class SearchPage {
 
         this.searchBtn = page.getByRole('button', {name: 'Search'});
 
+        this.servicesTab = page.locator(".truncate h4");
+
+        this.directionChangeButton = page.locator("#toggler-icon");
         this.modifySearchBtn = page.getByRole('button', {name: 'Modify Search'});
     }
 
@@ -61,11 +64,11 @@ class SearchPage {
             });
         }
 
-        let searchDate = "15";
-        let searchMonthWithYear = "August 2025";
+        let searchDate = "3";
+        let searchMonthWithYear = "February 2025";
         await this.calendarOpen.click();
 
-        let attempts = 1;
+        let attempts = 3;
         const maxAttempts = 12;
         while (true) {
             const currentMonthYear = await this.monthWithYear.textContent();
@@ -94,12 +97,30 @@ class SearchPage {
         console.log('Calendar selection not works: Date not found');
     }
 
-    async clickOnSearchBtn() {
+    async searchTrip() {
         await  this.searchBtn.click();
     }
 
     async checkThePageIsLoadedOrNot() {
-        await expect(this.modifySearchBtn).toBeVisible();
+        await expect().toBeVisible();
+    }
+
+    async openTheBusSection() {
+        let desiredServicesTab = "Buses";
+        const servicesTabOptions = await this.servicesTab;
+        const servicesTabCount = await servicesTabOptions.count();
+        for (let i = 0; i< servicesTabCount; i++) {
+            const servicesTabName = await servicesTabOptions.nth(i).textContent();
+            if (servicesTabName === desiredServicesTab) {
+                await servicesTabOptions.nth(i).click();
+                console.log(`Selected Tab: ${desiredServicesTab}`);
+                return;
+            }
+        }
+        console.log('Tab selection not works.');
+    }
+
+    async modifySearch(){
     }
 }
 

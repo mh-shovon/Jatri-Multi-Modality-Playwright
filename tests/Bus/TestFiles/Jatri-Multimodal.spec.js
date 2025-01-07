@@ -87,7 +87,7 @@ test('Test-5 :: Enter Journey Date for searching trips', async () => {
 test('Test-6 :: Click on Search Button for searching trips', async () => {
     try {
         const searchPage = controllerPage.getSearchPage();
-        await searchPage.clickOnSearchBtn();
+        await searchPage.searchTrip();
     } catch (error) {
         console.error('Failed to click on search button', error);
         throw error;
@@ -100,6 +100,21 @@ test('Test-7 :: Check the Trips page is visible or not', async () => {
         await searchPage.checkThePageIsLoadedOrNot();
     } catch (error) {
         console.error('Failed to load the page', error);
+        throw error;
+    }
+});
+
+test('Test-8 :: Change the services to the bus section', async () => {
+    try {
+        const searchPage = controllerPage.getSearchPage();
+        await searchPage.openTheBusSection();
+        if(page.locator(".mx-auto")) {
+            console.log('No Bus Found');
+        }else {
+            console.log('Click on the view seat of a trip');
+        }
+    } catch (error) {
+        console.error('Failed to change the tab', error);
         throw error;
     }
 });
