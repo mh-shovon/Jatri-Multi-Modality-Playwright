@@ -102,7 +102,7 @@ class SearchPage {
     }
 
     async checkThePageIsLoadedOrNot() {
-        await expect().toBeVisible();
+        await expect(this.modifySearchBtn).toBeVisible();
     }
 
     async openTheBusSection() {
