@@ -3,11 +3,18 @@ test.describe.configure({ mode: 'serial' });
 const { ControllerPage } = require('../Controller/ControllerPage');
 const dataSet = JSON.parse(JSON.stringify(require('../JsonFiles/UserInfo.json')));
 const { fetchOtpFromRedis } = require('../OTP/GetOtpFromRedis');
-const { fetchMostRecentOtpFromMongo } = require('../OTP/GerOtpFromDatabase')
+const { fetchMostRecentOtpFromMongo } = require('../OTP/GerOtpFromDatabase');
 
-test.skip('Test-1 :: Visit the website and login with valid OTP from Redis', async ({ page }) => {
-    const controllerPage = new ControllerPage(page);
+let page;
+let controllerPage;
 
+test.beforeAll(async ({ browser }) => {
+    const context = await browser.newContext();
+    page = await context.newPage();
+    controllerPage = new ControllerPage(page);
+});
+
+test.skip('Test-1 :: Visit the website and login with valid OTP from Redis', async () => {
     try {
         const homePage = controllerPage.getHomePage();
         await homePage.openHomepage();
@@ -17,16 +24,9 @@ test.skip('Test-1 :: Visit the website and login with valid OTP from Redis', asy
         await loginPage.enterValidPhoneNumber(dataSet.userPhoneNumber);
         await loginPage.clickOnGetOtpButton();
 
-        function delay(time) {
-            return new Promise(function(resolve) {
-                setTimeout(resolve, time)
-            });
-        }
-        await delay(10 * 1000);
         console.log('Waiting for OTP...');
-
-        await delay(10 * 1000);
         const otp = await fetchOtpFromRedis(dataSet.userPhoneNumber);
+        console.log(`Fetched OTP: ${otp}`);
         await loginPage.enterValidOtp(otp);
     } catch (error) {
         console.error('Failed to fetch OTP:', error);
@@ -34,9 +34,7 @@ test.skip('Test-1 :: Visit the website and login with valid OTP from Redis', asy
     }
 });
 
-test.beforeAll('Test-2 :: Visit the website and login with valid OTP from Database', async ({ page }) => {
-    const controllerPage = new ControllerPage(page);
-
+test('Test-2 :: Visit the website and login with valid OTP from Database', async () => {
     try {
         const homePage = controllerPage.getHomePage();
         await homePage.openHomepage();
@@ -47,7 +45,6 @@ test.beforeAll('Test-2 :: Visit the website and login with valid OTP from Databa
         await loginPage.clickOnGetOtpButton();
 
         console.log('Waiting for OTP...');
-
         const otp = await fetchMostRecentOtpFromMongo(dataSet.userPhoneNumber);
         console.log(`Fetched OTP: ${otp}`);
         await loginPage.enterValidOtp(otp);
@@ -57,16 +54,56 @@ test.beforeAll('Test-2 :: Visit the website and login with valid OTP from Databa
     }
 });
 
-test('Test-3 :: Enter search details for searching trips', async ({ page }) => {
-    const controllerPage = new ControllerPage(page);
-
+test('Test-3 :: Enter From City for searching trips', async () => {
     try {
         const searchPage = controllerPage.getSearchPage();
         await searchPage.setFromCity();
+    } catch (error) {
+        console.error('Failed to set from city', error);
+        throw error;
+    }
+});
+
+test('Test-4 :: Enter Destination City for searching trips', async () => {
+    try {
+        const searchPage = controllerPage.getSearchPage();
         await searchPage.setDestinationCity();
+    } catch (error) {
+        console.error('Failed to set destination city', error);
+        throw error;
+    }
+});
+
+test('Test-5 :: Enter Journey Date for searching trips', async () => {
+    try {
+        const searchPage = controllerPage.getSearchPage();
         await searchPage.setJourneyDate();
+    } catch (error) {
+        console.error('Failed to set journey date', error);
+        throw error;
+    }
+});
+
+test('Test-6 :: Click on Search Button for searching trips', async () => {
+    try {
+        const searchPage = controllerPage.getSearchPage();
         await searchPage.clickOnSearchBtn();
     } catch (error) {
-        console.error('Failed to set search Data', error);
+        console.error('Failed to click on search button', error);
+        throw error;
     }
+});
+
+test('Test-7 :: Check the Trips page is visible or not', async () => {
+    try {
+        const searchPage = controllerPage.getSearchPage();
+        await searchPage.checkThePageIsLoadedOrNot();
+    } catch (error) {
+        console.error('Failed to load the page', error);
+        throw error;
+    }
+});
+
+test.afterAll(async () => {
+    await page.pause();
 });

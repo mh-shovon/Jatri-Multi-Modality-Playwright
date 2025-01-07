@@ -1,3 +1,5 @@
+const { expect } = require('@playwright/test')
+
 class SearchPage {
     constructor(page) {
         //this.page = page;
@@ -17,6 +19,8 @@ class SearchPage {
         this.calendarNextBtn = page.locator(".vc-next");
 
         this.searchBtn = page.getByRole('button', {name: 'Search'});
+
+        this.modifySearchBtn = page.getByRole('button', {name: 'Modify Search'});
     }
 
     async setFromCity() {
@@ -74,7 +78,7 @@ class SearchPage {
                 return;
             }
             await this.calendarNextBtn.click();
-            await delay(1000);
+            await delay(500);
         }
 
         const dateCells = await this.date;
@@ -92,6 +96,10 @@ class SearchPage {
 
     async clickOnSearchBtn() {
         await  this.searchBtn.click();
+    }
+
+    async checkThePageIsLoadedOrNot() {
+        await expect(this.modifySearchBtn).toBeVisible();
     }
 }
 
