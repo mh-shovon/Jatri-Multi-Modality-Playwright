@@ -108,11 +108,6 @@ test('Test-8 :: Change the services to the bus section', async () => {
     try {
         const searchPage = controllerPage.getSearchPage();
         await searchPage.openTheBusSection();
-        if(page.locator(".mx-auto")) {
-            console.log('No Bus Found. Please try for an another date.');
-        }else {
-            console.log('Click on the view seat of a trip');
-        }
     } catch (error) {
         console.error('Failed to change the tab', error);
         throw error;
@@ -130,5 +125,5 @@ test('Test-9 :: Search trips for the opposite direction using by direction switc
 });
 
 test.afterAll(async () => {
-    await page.pause();
+    await page.close();
 });

@@ -22,7 +22,14 @@ class SearchPage {
 
         this.directionSwitchButton = page.locator("#toggler-icon");
         this.modifySearchBtn = page.getByRole('button', {name: 'Modify Search'});
+
+        this.noDataLogo = page.locator('.mx-auto');
     }
+
+    async delay(time) {
+        return new Promise(resolve => setTimeout(resolve, time));
+    }
+
 
     async setFromCity() {
         let desiredFromCityName = "Dhaka";
@@ -86,12 +93,6 @@ class SearchPage {
     }
 
     async setJourneyDateUsingStaticDate() {
-        function delay(time) {
-            return new Promise(function(resolve) {
-                setTimeout(resolve, time)
-            });
-        }
-
         let searchDate = "3";
         let searchMonthWithYear = "February 2025";
         await this.calendarOpen.click();
@@ -109,7 +110,7 @@ class SearchPage {
                 return;
             }
             await this.calendarNextBtn.click();
-            await delay(500);
+            await this.delay(500);
         }
 
         const dateCells = await this.date;
@@ -127,6 +128,7 @@ class SearchPage {
 
     async searchTrip() {
         await  this.searchBtn.click();
+        await this.delay(1000);
     }
 
     async openTheBusSection() {
@@ -137,7 +139,15 @@ class SearchPage {
             const servicesTabName = await servicesTabOptions.nth(i).textContent();
             if (servicesTabName === desiredServicesTab) {
                 await servicesTabOptions.nth(i).click();
+                await this.delay(2000);
                 console.log(`Selected Tab: ${desiredServicesTab}`);
+                const noDataLogoIsVisible = await this.noDataLogo.isVisible();
+                await this.delay(2000);
+                if (noDataLogoIsVisible) {
+                    console.log('No Bus Found. Please try for an another date.')
+                }else {
+                    console.log('Click on the view seat of a trip');
+                }
                 return;
             }
         }
@@ -147,6 +157,23 @@ class SearchPage {
     async modifySearch(){
         await this.directionSwitchButton.click();
         await this.modifySearchBtn.click();
+        await this.delay(1000);
+        const noDataLogoIsVisible = await this.noDataLogo.isVisible();
+        await this.delay(2000);
+        if (noDataLogoIsVisible) {
+            console.log('No Bus Found. Please try for an another date.')
+        }else {
+            console.log('Click on the view seat of a trip');
+        }
+        await this.directionSwitchButton.click();
+        await this.modifySearchBtn.click();
+        await this.delay(2000);
+        if (noDataLogoIsVisible) {
+            console.log('No Bus Found. Please try for an another date.')
+        }else {
+            console.log('Click on the view seat of a trip');
+        }
+        await this.delay(1000);
     }
 }
 
