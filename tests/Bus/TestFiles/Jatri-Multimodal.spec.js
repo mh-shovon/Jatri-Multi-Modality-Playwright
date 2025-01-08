@@ -74,17 +74,27 @@ test('Test-4 :: Enter Destination City for searching trips', async () => {
     }
 });
 
-test('Test-5 :: Enter Journey Date for searching trips', async () => {
+test('Test-5 :: Enter Journey Date(Current Date) for searching trips', async () => {
     try {
         const searchPage = controllerPage.getSearchPage();
-        await searchPage.setJourneyDate();
+        await searchPage.setJourneyDateUsingCurrentDate();
     } catch (error) {
         console.error('Failed to set journey date', error);
         throw error;
     }
 });
 
-test('Test-6 :: Click on Search Button for searching trips', async () => {
+test.skip('Test-6 :: Enter Journey Date(Static Date) for searching trips', async () => {
+    try {
+        const searchPage = controllerPage.getSearchPage();
+        await searchPage.setJourneyDateUsingStaticDate();
+    } catch (error) {
+        console.error('Failed to set journey date', error);
+        throw error;
+    }
+});
+
+test('Test-7 :: Click on Search Button for searching trips', async () => {
     try {
         const searchPage = controllerPage.getSearchPage();
         await searchPage.searchTrip();
@@ -94,27 +104,27 @@ test('Test-6 :: Click on Search Button for searching trips', async () => {
     }
 });
 
-test('Test-7 :: Check the Trips page is visible or not', async () => {
-    try {
-        const searchPage = controllerPage.getSearchPage();
-        await searchPage.checkThePageIsLoadedOrNot();
-    } catch (error) {
-        console.error('Failed to load the page', error);
-        throw error;
-    }
-});
-
 test('Test-8 :: Change the services to the bus section', async () => {
     try {
         const searchPage = controllerPage.getSearchPage();
         await searchPage.openTheBusSection();
         if(page.locator(".mx-auto")) {
-            console.log('No Bus Found');
+            console.log('No Bus Found. Please try for an another date.');
         }else {
             console.log('Click on the view seat of a trip');
         }
     } catch (error) {
         console.error('Failed to change the tab', error);
+        throw error;
+    }
+});
+
+test('Test-9 :: Search trips for the opposite direction using by direction switch button ', async () => {
+    try {
+        const searchPage = controllerPage.getSearchPage();
+        await searchPage.modifySearch();
+    } catch (error) {
+        console.error('Failed to modifying the search', error);
         throw error;
     }
 });

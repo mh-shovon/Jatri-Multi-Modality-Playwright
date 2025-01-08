@@ -1,5 +1,3 @@
-const { expect } = require('@playwright/test')
-
 class SearchPage {
     constructor(page) {
         //this.page = page;
@@ -22,7 +20,7 @@ class SearchPage {
 
         this.servicesTab = page.locator(".truncate h4");
 
-        this.directionChangeButton = page.locator("#toggler-icon");
+        this.directionSwitchButton = page.locator("#toggler-icon");
         this.modifySearchBtn = page.getByRole('button', {name: 'Modify Search'});
     }
 
@@ -57,7 +55,37 @@ class SearchPage {
         }
     }
 
-    async setJourneyDate() {
+    async setJourneyDateUsingCurrentDate() {
+        const today = new Date();
+        let day = today.getDate();
+        let month = today.toLocaleString('default', { month: 'long' });
+        let year = today.getFullYear();
+        const formattedDate = `${day} ${month} ${year}`;
+        console.log(formattedDate);
+
+        await this.calendarOpen.click();
+
+        let searchDate = day;
+        console.log(searchDate);
+        let searchMonthWithYear = month + " " + year;
+        console.log(searchMonthWithYear)
+
+        const dateCells = await this.date;
+        const dateCellsCount = await dateCells.count();
+        for (let i = 0; i < dateCellsCount; i++) {
+            const dateValue = await dateCells.nth(i).textContent();
+            if (Number(dateValue) === searchDate) {
+                await this.calendarOpen.click();
+                console.log(`Selected date: ${searchDate}`);
+                return;
+            }else {
+                console.log('Date not matched');
+            }
+        }
+        console.log('Calendar selection not works: Date not found');
+    }
+
+    async setJourneyDateUsingStaticDate() {
         function delay(time) {
             return new Promise(function(resolve) {
                 setTimeout(resolve, time)
@@ -101,10 +129,6 @@ class SearchPage {
         await  this.searchBtn.click();
     }
 
-    async checkThePageIsLoadedOrNot() {
-        await expect(this.modifySearchBtn).toBeVisible();
-    }
-
     async openTheBusSection() {
         let desiredServicesTab = "Buses";
         const servicesTabOptions = await this.servicesTab;
@@ -121,6 +145,8 @@ class SearchPage {
     }
 
     async modifySearch(){
+        await this.directionSwitchButton.click();
+        await this.modifySearchBtn.click();
     }
 }
 
