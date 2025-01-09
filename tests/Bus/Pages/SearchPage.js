@@ -157,9 +157,8 @@ class SearchPage {
     async modifySearch(){
         await this.directionSwitchButton.click();
         await this.modifySearchBtn.click();
-        await this.delay(1000);
-        const noDataLogoIsVisible = await this.noDataLogo.isVisible();
         await this.delay(2000);
+        const noDataLogoIsVisible = await this.noDataLogo.isVisible();
         if (noDataLogoIsVisible) {
             console.log('No Bus Found. Please try for an another date.')
         }else {
@@ -173,7 +172,6 @@ class SearchPage {
         }else {
             console.log('Click on the view seat of a trip');
         }
-        await this.delay(1000);
     }
 }
 
