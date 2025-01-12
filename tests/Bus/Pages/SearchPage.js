@@ -159,10 +159,10 @@ class SearchPage {
         await this.modifySearchBtn.click();
         await this.delay(2000);
         const noDataLogoIsVisible = await this.noDataLogo.isVisible();
-        if (noDataLogoIsVisible) {
-            console.log('No Bus Found. Please try for an another date.')
-        }else {
+        if (!noDataLogoIsVisible) {
             console.log('Click on the view seat of a trip');
+        }else {
+            console.log('No Bus Found. Please try for an another date.')
         }
         await this.directionSwitchButton.click();
         await this.modifySearchBtn.click();
