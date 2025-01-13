@@ -124,6 +124,16 @@ test('Test-9 :: Search trips for the opposite direction using by direction switc
     }
 });
 
+test('Test-10 :: Find a specific trips for ticketing', async () => {
+    try {
+        const seatViewPage = controllerPage.getSeatViewPage();
+        await seatViewPage.findTrips();
+    } catch (error) {
+        console.error('Failed to search the trip', error);
+        throw error;
+    }
+});
+
 test.afterAll(async () => {
-    await page.close();
+    await page.pause();
 });

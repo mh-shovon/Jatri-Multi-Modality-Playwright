@@ -1,7 +1,5 @@
 class SearchPage {
     constructor(page) {
-        //this.page = page;
-
         this.fromCity = page.locator("id=from");
         this.searchFromCity = page.locator("id=search-from")
         this.fromCitySubCityList = page.locator("ul li .font-normal");
@@ -146,7 +144,7 @@ class SearchPage {
                 if (noDataLogoIsVisible) {
                     console.log('No Bus Found. Please try for an another date.')
                 }else {
-                    console.log('Click on the view seat of a trip');
+                    console.log('Click on the Select seats of a trip');
                 }
                 return;
             }
@@ -160,7 +158,7 @@ class SearchPage {
         await this.delay(2000);
         const noDataLogoIsVisible = await this.noDataLogo.isVisible();
         if (!noDataLogoIsVisible) {
-            console.log('Click on the view seat of a trip');
+            console.log('Click on the Select seats of a trip');
         }else {
             console.log('No Bus Found. Please try for an another date.')
         }
@@ -170,7 +168,7 @@ class SearchPage {
         if (noDataLogoIsVisible) {
             console.log('No Bus Found. Please try for an another date.')
         }else {
-            console.log('Click on the view seat of a trip');
+            console.log('Click on the Select seats of a trip');
         }
     }
 }
