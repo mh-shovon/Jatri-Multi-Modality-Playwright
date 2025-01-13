@@ -4,7 +4,7 @@ class SeatViewPage {
         this.selectSeatsBtn = page.getByRole('button', {name: 'Select Seats'});
     }
 
-    async findTrips() {
+    async findTripsAndGoToTheSelectSeatsSection() {
         let desiredTripOrCoachNo = "MT-Automation-001";
         let tripOrCoachNoCount = await this.tripOrCoachNo.count();
         let i = 0;
