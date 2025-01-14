@@ -124,7 +124,7 @@ test('Test-9 :: Search trips for the opposite direction using by direction switc
     }
 });
 
-test('Test-10 :: Find a specific trips for ticketing', async () => {
+test('Test-10 :: Find a specific trips for ticketing and go to the seat paln', async () => {
     try {
         const tripViewPage = controllerPage.getTripViewPage();
         await tripViewPage.findTripsAndGoToTheSelectSeatsSection();
