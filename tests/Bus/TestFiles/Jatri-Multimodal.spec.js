@@ -139,7 +139,7 @@ test('Test-10 :: Select a seat from the seat view section', async () => {
         const seatViewPage = controllerPage.getSeatViewPage();
         await seatViewPage.selectSeatFromSeatView();
     } catch (error) {
-        console.error('Failed to search the trip', error);
+        console.error('Failed to select a seat', error);
         throw error;
     }
 });
