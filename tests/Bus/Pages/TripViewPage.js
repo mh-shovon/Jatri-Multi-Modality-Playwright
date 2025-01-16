@@ -21,10 +21,6 @@ class TripViewPage {
             console.log("Trip or coach no not found in the list");
         }
     }
-
-    async selectSeatFromSeatView() {
-
-    }
 }
 
-module.exports = { SeatViewPage: TripViewPage };
+module.exports = { TripViewPage };
