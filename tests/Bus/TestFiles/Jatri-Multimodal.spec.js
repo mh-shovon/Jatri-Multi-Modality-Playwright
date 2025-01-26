@@ -134,7 +134,7 @@ test('Test-10 :: Find a specific trips for ticketing and go to the seat paln', a
     }
 });
 
-test('Test-10 :: Select a single seat from the seat view section', async () => {
+test('Test-11 :: Select a single seat from the seat view section', async () => {
     try {
         const seatViewPage = controllerPage.getSeatViewPage();
         await seatViewPage.selectSingleSeatFromSeatView();
