@@ -4,6 +4,10 @@ class TripListPage {
         this.selectSeatsBtn = page.getByRole('button', {name: 'Select Seats'});
     }
 
+    async delay(time) {
+        return new Promise(resolve => setTimeout(resolve, time));
+    }
+
     async findTripsAndGoToTheSelectSeatsSection() {
         let desiredTripOrCoachNo = "MT-Automation-001";
         let tripOrCoachNoCount = await this.tripOrCoachNo.count();

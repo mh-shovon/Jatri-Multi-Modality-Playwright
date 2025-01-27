@@ -2,7 +2,8 @@ const { HomePage } = require('../Pages/HomePage');
 const { LoginPage } = require('../Pages/LoginPage');
 const { SearchPage}  = require('../Pages/SearchPage');
 const { TripListPage } = require('../Pages/TripListPage');
-const { SeatViewPage } = require('../Pages/SeatViewPage');
+const { PurchaseSingleSeat } = require('../Pages/PurchaseSingleSeat');
+const { PurchaseMultipleSeat } = require('../Pages/PurchaseMultipleSeat')
 
 class ControllerPage{
     constructor(page){
@@ -11,7 +12,8 @@ class ControllerPage{
         this.loginPage = new LoginPage(this.page);
         this.searchPage = new SearchPage(this.page);
         this.tripListPage = new TripListPage(this.page);
-        this.seatViewPage = new SeatViewPage(this.page);
+        this.purchaseSingleSeat = new PurchaseSingleSeat(this.page);
+        this.purchaseMultipleSeat = new PurchaseMultipleSeat(this.page);
     }
 
     getHomePage(){
@@ -30,8 +32,12 @@ class ControllerPage{
         return this.tripListPage;
     }
 
-    getSeatViewPage(){
-        return this.seatViewPage;
+    getPurchaseSingleSeat(){
+        return this.purchaseSingleSeat;
+    }
+
+    getPurchaseMultipleSeat(){
+        return this.purchaseMultipleSeat;
     }
 }
 module.exports = { ControllerPage };

@@ -124,7 +124,7 @@ test('Test-9 :: Search trips for the opposite direction using by direction switc
     }
 });
 
-test('Test-10 :: Find a specific trips for ticketing and go to the seat paln', async () => {
+test('Test-10 :: Find a specific trips for ticketing and go to the seat plan', async () => {
     try {
         const tripListPage = controllerPage.getTripListPage();
         await tripListPage.findTripsAndGoToTheSelectSeatsSection();
@@ -136,10 +136,21 @@ test('Test-10 :: Find a specific trips for ticketing and go to the seat paln', a
 
 test('Test-11 :: Select a single seat from the seat view section', async () => {
     try {
-        const seatViewPage = controllerPage.getSeatViewPage();
-        await seatViewPage.selectSingleSeatFromSeatView();
+        const purchaseSingleSeat = controllerPage.getPurchaseSingleSeat();
+        await purchaseSingleSeat.selectSingleSeatFromSeatView();
+        await purchaseSingleSeat.userBookingDetails();
     } catch (error) {
         console.error('Failed to select a seat', error);
+        throw error;
+    }
+});
+
+test.skip('Test-12 :: Select multiple seats from the seat view section', async () => {
+    try {
+        const purchaseMultipleSeat = controllerPage.getPurchaseMultipleSeat();
+        await purchaseMultipleSeat.selectMultipleSeatFromSeatView();
+    } catch (error) {
+        console.error('Failed to select seats', error);
         throw error;
     }
 });
