@@ -1,6 +1,6 @@
 class SeatViewPage {
     constructor(page) {
-        this.allSeats = page.locator('button[class]');
+        this.allSeats = page.locator('button[class] [fill="none"]');
         this.blockSeats = page.locator('button[disabled]');
     }
 

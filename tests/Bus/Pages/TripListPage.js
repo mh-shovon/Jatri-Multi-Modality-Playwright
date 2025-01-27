@@ -1,4 +1,4 @@
-class TripViewPage {
+class TripListPage {
     constructor(page) {
         this.tripOrCoachNo = page.locator(".mt-1");
         this.selectSeatsBtn = page.getByRole('button', {name: 'Select Seats'});
@@ -23,4 +23,4 @@ class TripViewPage {
     }
 }
 
-module.exports = { TripViewPage };
+module.exports = { TripListPage };

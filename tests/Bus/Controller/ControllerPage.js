@@ -1,7 +1,7 @@
 const { HomePage } = require('../Pages/HomePage');
 const { LoginPage } = require('../Pages/LoginPage');
 const { SearchPage}  = require('../Pages/SearchPage');
-const { TripViewPage } = require('../Pages/TripViewPage');
+const { TripListPage } = require('../Pages/TripListPage');
 const { SeatViewPage } = require('../Pages/SeatViewPage');
 
 class ControllerPage{
@@ -10,7 +10,7 @@ class ControllerPage{
         this.homePage = new HomePage(this.page);
         this.loginPage = new LoginPage(this.page);
         this.searchPage = new SearchPage(this.page);
-        this.tripViewPage = new TripViewPage(this.page);
+        this.tripListPage = new TripListPage(this.page);
         this.seatViewPage = new SeatViewPage(this.page);
     }
 
@@ -26,8 +26,8 @@ class ControllerPage{
         return this.searchPage;
     }
 
-    getTripViewPage(){
-        return this.tripViewPage;
+    getTripListPage(){
+        return this.tripListPage;
     }
 
     getSeatViewPage(){
