@@ -138,7 +138,11 @@ test('Test-11 :: Select a single seat from the seat view section', async () => {
     try {
         const purchaseSingleSeat = controllerPage.getPurchaseSingleSeat();
         await purchaseSingleSeat.selectSingleSeatFromSeatView();
+        await this.delay(2000);
         await purchaseSingleSeat.userBookingDetails();
+        await this.delay(2000);
+        await purchaseSingleSeat.selectingPaymentMethodAndTicketConfirmation();
+        await this.delay(2000);
     } catch (error) {
         console.error('Failed to select a seat', error);
         throw error;
