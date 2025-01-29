@@ -126,7 +126,7 @@ class SearchPage {
 
     async searchTrip() {
         await  this.searchBtn.click();
-        await this.delay(1000);
+        await this.delay(3000);
     }
 
     async openTheBusSection() {

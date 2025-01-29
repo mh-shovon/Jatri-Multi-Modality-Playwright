@@ -125,7 +125,7 @@ test('Test-9 :: Search trips for the opposite direction using by direction switc
 });
 
 test('Test-10 :: Find a specific trips for ticketing and go to the seat plan', async () => {
-    try {
+     try {
         const tripListPage = controllerPage.getTripListPage();
         await tripListPage.findTripsAndGoToTheSelectSeatsSection();
     } catch (error) {
@@ -134,25 +134,32 @@ test('Test-10 :: Find a specific trips for ticketing and go to the seat plan', a
     }
 });
 
-test('Test-11 :: Select a single seat from the seat view section', async () => {
+test.skip('Test-11 :: Select a single seat from the seat view section', async () => {
     try {
         const purchaseSingleSeat = controllerPage.getPurchaseSingleSeat();
+        const userBookingDetailsPage = controllerPage.getUserBookingDetailsPage();
+        const selectingPaymentMethodPage = controllerPage.getSelectingPaymentMethodPage();
+        const ticketConfirmationPage = controllerPage.getTicketConfirmationPage();
         await purchaseSingleSeat.selectSingleSeatFromSeatView();
-        await this.delay(2000);
-        await purchaseSingleSeat.userBookingDetails();
-        await this.delay(2000);
-        await purchaseSingleSeat.selectingPaymentMethodAndTicketConfirmation();
-        await this.delay(2000);
+        await userBookingDetailsPage.userBookingDetails();
+        await selectingPaymentMethodPage.selectingPaymentMethodAndTicketConfirmation();
+        await ticketConfirmationPage.ticketConfirmation();
     } catch (error) {
         console.error('Failed to select a seat', error);
         throw error;
     }
 });
 
-test.skip('Test-12 :: Select multiple seats from the seat view section', async () => {
+test('Test-12 :: Select multiple seats from the seat view section', async () => {
     try {
         const purchaseMultipleSeat = controllerPage.getPurchaseMultipleSeat();
-        await purchaseMultipleSeat.selectMultipleSeatFromSeatView();
+        const userBookingDetailsPage = controllerPage.getUserBookingDetailsPage();
+        const selectingPaymentMethodPage = controllerPage.getSelectingPaymentMethodPage();
+        const ticketConfirmationPage = controllerPage.getTicketConfirmationPage();
+        await purchaseMultipleSeat.selectMultipleSeatsFromSeatView();
+        await userBookingDetailsPage.userBookingDetails();
+        await selectingPaymentMethodPage.selectingPaymentMethodAndTicketConfirmation();
+        await ticketConfirmationPage.ticketConfirmation();
     } catch (error) {
         console.error('Failed to select seats', error);
         throw error;
