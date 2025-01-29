@@ -1,4 +1,4 @@
-const { HomePage } = require('../Pages/HomePage/HomePage');
+const { HomePage } = require('../');
 const { LoginPage } = require('../Pages/LoginPage/LoginPage');
 const { SearchPage}  = require('../Pages/SearchPage/SearchPage');
 const { TripListPage } = require('../Pages/TripListPage/TripListPage');

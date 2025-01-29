@@ -1,5 +1,4 @@
 const { MongoClient } = require('mongodb');
-const {throws} = require("node:assert");
 require('dotenv').config();
 
 const mongoClient = new MongoClient(process.env.MONGO_URL);
