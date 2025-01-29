@@ -1,12 +1,12 @@
-const { HomePage } = require('../Pages/HomePage');
-const { LoginPage } = require('../Pages/LoginPage');
-const { SearchPage}  = require('../Pages/SearchPage');
-const { TripListPage } = require('../Pages/TripListPage');
-const { PurchaseSingleSeat } = require('../Pages/PurchaseSingleSeat');
-const { PurchaseMultipleSeat } = require('../Pages/PurchaseMultipleSeat')
-const { UserBookingDetailsPage } = require('../Pages/UserBookingDetailsPage');
-const { SelectingPaymentMethodPage } = require('../Pages/SelectingPaymentMethodPage');
-const { TicketConfirmationPage } = require('../Pages/TicketConfirmationPage');
+const { HomePage } = require('../Pages/HomePage/HomePage');
+const { LoginPage } = require('../Pages/LoginPage/LoginPage');
+const { SearchPage}  = require('../Pages/SearchPage/SearchPage');
+const { TripListPage } = require('../Pages/TripListPage/TripListPage');
+const { PurchaseSingleSeat } = require('../Pages/Ticketing/PurchaseSingleSeat');
+const { PurchaseMultipleSeat } = require('../Pages/Ticketing/PurchaseMultipleSeat')
+const { UserBookingDetailsPage } = require('../Pages/Ticketing/UserBookingDetailsPage');
+const { SelectingPaymentMethodPage } = require('../Pages/Ticketing/SelectingPaymentMethodPage');
+const { TicketConfirmationPage } = require('../Pages/Ticketing/TicketConfirmationPage');
 
 class ControllerPage{
     constructor(page){
