@@ -1,25 +1,25 @@
 const { test } = require('@playwright/test');
 test.describe.configure({ mode: 'serial' });
-const { ControllerPage } = require('../Controller/ControllerPage');
-const dataSet = JSON.parse(JSON.stringify(require('../JsonFiles/UserInfo.json')));
+const { UserControllerPage } = require('../Controller/UserControllerPage');
+const dataSet = JSON.parse(JSON.stringify(require('../JsonFiles/UserCredentials.json')));
 const { fetchOtpFromRedis } = require('../OTP/GetOtpFromRedis');
 const { fetchMostRecentOtpFromMongo } = require('../OTP/GerOtpFromDatabase');
 
 let page;
-let controllerPage;
+let userControllerPage;
 
 test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext();
     page = await context.newPage();
-    controllerPage = new ControllerPage(page);
+    userControllerPage = new UserControllerPage(page);
 });
 
 test.skip('Test-1 :: Visit the website and login with valid OTP from Redis', async () => {
     try {
-        const homePage = controllerPage.getHomePage();
+        const homePage = userControllerPage.getHomePage();
         await homePage.openHomepage();
 
-        const loginPage = controllerPage.getLoginPage();
+        const loginPage = userControllerPage.getLoginPage();
         await loginPage.openLoginPage();
         await loginPage.enterValidPhoneNumber(dataSet.userPhoneNumber);
         await loginPage.clickOnGetOtpButton();
@@ -36,10 +36,10 @@ test.skip('Test-1 :: Visit the website and login with valid OTP from Redis', asy
 
 test('Test-2 :: Visit the website and login with valid OTP from Database', async () => {
     try {
-        const homePage = controllerPage.getHomePage();
+        const homePage = userControllerPage.getHomePage();
         await homePage.openHomepage();
 
-        const loginPage = controllerPage.getLoginPage();
+        const loginPage = userControllerPage.getLoginPage();
         await loginPage.openLoginPage();
         await loginPage.enterValidPhoneNumber(dataSet.userPhoneNumber);
         await loginPage.clickOnGetOtpButton();
@@ -56,7 +56,7 @@ test('Test-2 :: Visit the website and login with valid OTP from Database', async
 
 test('Test-3 :: Enter From City for searching trips', async () => {
     try {
-        const searchPage = controllerPage.getSearchPage();
+        const searchPage = userControllerPage.getSearchPage();
         await searchPage.setFromCity();
     } catch (error) {
         console.error('Failed to set from city', error);
@@ -66,7 +66,7 @@ test('Test-3 :: Enter From City for searching trips', async () => {
 
 test('Test-4 :: Enter Destination City for searching trips', async () => {
     try {
-        const searchPage = controllerPage.getSearchPage();
+        const searchPage = userControllerPage.getSearchPage();
         await searchPage.setDestinationCity();
     } catch (error) {
         console.error('Failed to set destination city', error);
@@ -76,7 +76,7 @@ test('Test-4 :: Enter Destination City for searching trips', async () => {
 
 test('Test-5 :: Enter Journey Date(Current Date) for searching trips', async () => {
     try {
-        const searchPage = controllerPage.getSearchPage();
+        const searchPage = userControllerPage.getSearchPage();
         await searchPage.setJourneyDateUsingCurrentDate();
     } catch (error) {
         console.error('Failed to set journey date', error);
@@ -86,7 +86,7 @@ test('Test-5 :: Enter Journey Date(Current Date) for searching trips', async () 
 
 test.skip('Test-6 :: Enter Journey Date(Static Date) for searching trips', async () => {
     try {
-        const searchPage = controllerPage.getSearchPage();
+        const searchPage = userControllerPage.getSearchPage();
         await searchPage.setJourneyDateUsingStaticDate();
     } catch (error) {
         console.error('Failed to set journey date', error);
@@ -96,7 +96,7 @@ test.skip('Test-6 :: Enter Journey Date(Static Date) for searching trips', async
 
 test('Test-7 :: Click on Search Button for searching trips', async () => {
     try {
-        const searchPage = controllerPage.getSearchPage();
+        const searchPage = userControllerPage.getSearchPage();
         await searchPage.searchTrip();
     } catch (error) {
         console.error('Failed to click on search button', error);
@@ -106,7 +106,7 @@ test('Test-7 :: Click on Search Button for searching trips', async () => {
 
 test('Test-8 :: Change the services to the bus section', async () => {
     try {
-        const searchPage = controllerPage.getSearchPage();
+        const searchPage = userControllerPage.getSearchPage();
         await searchPage.openTheBusSection();
     } catch (error) {
         console.error('Failed to change the tab', error);
@@ -116,7 +116,7 @@ test('Test-8 :: Change the services to the bus section', async () => {
 
 test('Test-9 :: Search trips for the opposite direction using by direction switch button ', async () => {
     try {
-        const searchPage = controllerPage.getSearchPage();
+        const searchPage = userControllerPage.getSearchPage();
         await searchPage.modifySearch();
     } catch (error) {
         console.error('Failed to modifying the search', error);
@@ -126,7 +126,7 @@ test('Test-9 :: Search trips for the opposite direction using by direction switc
 
 test('Test-10 :: Find a specific trips for ticketing and go to the seat plan', async () => {
      try {
-        const tripListPage = controllerPage.getTripListPage();
+        const tripListPage = userControllerPage.getTripListPage();
         await tripListPage.findTripsAndGoToTheSelectSeatsSection();
     } catch (error) {
         console.error('Failed to search the trip', error);
@@ -136,10 +136,10 @@ test('Test-10 :: Find a specific trips for ticketing and go to the seat plan', a
 
 test.skip('Test-11 :: Select a single seat from the seat view section', async () => {
     try {
-        const purchaseSingleSeat = controllerPage.getPurchaseSingleSeat();
-        const userBookingDetailsPage = controllerPage.getUserBookingDetailsPage();
-        const selectingPaymentMethodPage = controllerPage.getSelectingPaymentMethodPage();
-        const ticketConfirmationPage = controllerPage.getTicketConfirmationPage();
+        const purchaseSingleSeat = userControllerPage.getPurchaseSingleSeat();
+        const userBookingDetailsPage = userControllerPage.getUserBookingDetailsPage();
+        const selectingPaymentMethodPage = userControllerPage.getSelectingPaymentMethodPage();
+        const ticketConfirmationPage = userControllerPage.getTicketConfirmationPage();
         await purchaseSingleSeat.selectSingleSeatFromSeatView();
         await userBookingDetailsPage.userBookingDetails();
         await selectingPaymentMethodPage.selectingPaymentMethodAndTicketConfirmation();
@@ -152,10 +152,10 @@ test.skip('Test-11 :: Select a single seat from the seat view section', async ()
 
 test('Test-12 :: Select multiple seats from the seat view section', async () => {
     try {
-        const purchaseMultipleSeat = controllerPage.getPurchaseMultipleSeat();
-        const userBookingDetailsPage = controllerPage.getUserBookingDetailsPage();
-        const selectingPaymentMethodPage = controllerPage.getSelectingPaymentMethodPage();
-        const ticketConfirmationPage = controllerPage.getTicketConfirmationPage();
+        const purchaseMultipleSeat = userControllerPage.getPurchaseMultipleSeat();
+        const userBookingDetailsPage = userControllerPage.getUserBookingDetailsPage();
+        const selectingPaymentMethodPage = userControllerPage.getSelectingPaymentMethodPage();
+        const ticketConfirmationPage = userControllerPage.getTicketConfirmationPage();
         await purchaseMultipleSeat.selectMultipleSeatsFromSeatView();
         await userBookingDetailsPage.userBookingDetails();
         await selectingPaymentMethodPage.selectingPaymentMethodAndTicketConfirmation();

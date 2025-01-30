@@ -1,6 +1,6 @@
-const { HomePage } = require('../');
+const { HomePage } = require('../Pages/HomePage/HomePage');
 const { LoginPage } = require('../Pages/LoginPage/LoginPage');
-const { SearchPage}  = require('../Pages/SearchPage/SearchPage');
+const { SearchPage }  = require('../Pages/SearchPage/SearchPage');
 const { TripListPage } = require('../Pages/TripListPage/TripListPage');
 const { PurchaseSingleSeat } = require('../Pages/Ticketing/PurchaseSingleSeat');
 const { PurchaseMultipleSeat } = require('../Pages/Ticketing/PurchaseMultipleSeat')
@@ -8,7 +8,7 @@ const { UserBookingDetailsPage } = require('../Pages/Ticketing/UserBookingDetail
 const { SelectingPaymentMethodPage } = require('../Pages/Ticketing/SelectingPaymentMethodPage');
 const { TicketConfirmationPage } = require('../Pages/Ticketing/TicketConfirmationPage');
 
-class ControllerPage{
+class UserControllerPage {
     constructor(page){
         this.page = page;
         this.homePage = new HomePage(this.page);
@@ -58,4 +58,4 @@ class ControllerPage{
         return this.ticketConfirmationPage;
     }
 }
-module.exports = { ControllerPage };
+module.exports = { UserControllerPage };
