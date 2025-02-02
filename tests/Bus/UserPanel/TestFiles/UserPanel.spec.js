@@ -34,7 +34,7 @@ test.skip('Test-1 :: Visit the website and login with valid OTP from Redis', asy
     }
 });
 
-test('Test-2 :: Visit the website and login with valid OTP from Database', async () => {
+test('@PurchaseSingleSeat @PurchaseMultipleSeat Test-2 :: Visit the website and login with valid OTP from Database', async () => {
     try {
         const homePage = userControllerPage.getHomePage();
         await homePage.openHomepage();
@@ -54,7 +54,7 @@ test('Test-2 :: Visit the website and login with valid OTP from Database', async
     }
 });
 
-test('Test-3 :: Enter From City for searching trips', async () => {
+test('@PurchaseSingleSeat @PurchaseMultipleSeat Test-3 :: Enter From City for searching trips', async () => {
     try {
         const searchPage = userControllerPage.getSearchPage();
         await searchPage.setFromCity();
@@ -64,7 +64,7 @@ test('Test-3 :: Enter From City for searching trips', async () => {
     }
 });
 
-test('Test-4 :: Enter Destination City for searching trips', async () => {
+test('@PurchaseSingleSeat @PurchaseMultipleSeat Test-4 :: Enter Destination City for searching trips', async () => {
     try {
         const searchPage = userControllerPage.getSearchPage();
         await searchPage.setDestinationCity();
@@ -74,7 +74,7 @@ test('Test-4 :: Enter Destination City for searching trips', async () => {
     }
 });
 
-test('Test-5 :: Enter Journey Date(Current Date) for searching trips', async () => {
+test('@PurchaseSingleSeat @PurchaseMultipleSeat Test-5 :: Enter Journey Date(Current Date) for searching trips', async () => {
     try {
         const searchPage = userControllerPage.getSearchPage();
         await searchPage.setJourneyDateUsingCurrentDate();
@@ -94,7 +94,7 @@ test.skip('Test-6 :: Enter Journey Date(Static Date) for searching trips', async
     }
 });
 
-test('Test-7 :: Click on Search Button for searching trips', async () => {
+test('@PurchaseSingleSeat @PurchaseMultipleSeat Test-7 :: Click on Search Button for searching trips', async () => {
     try {
         const searchPage = userControllerPage.getSearchPage();
         await searchPage.searchTrip();
@@ -104,7 +104,7 @@ test('Test-7 :: Click on Search Button for searching trips', async () => {
     }
 });
 
-test('Test-8 :: Change the services to the bus section', async () => {
+test('@PurchaseSingleSeat @PurchaseMultipleSeat Test-8 :: Change the services to the bus section', async () => {
     try {
         const searchPage = userControllerPage.getSearchPage();
         await searchPage.openTheBusSection();
@@ -114,7 +114,7 @@ test('Test-8 :: Change the services to the bus section', async () => {
     }
 });
 
-test('Test-9 :: Search trips for the opposite direction using by direction switch button ', async () => {
+test('@PurchaseSingleSeat @PurchaseMultipleSeat Test-9 :: Search trips for the opposite direction using by direction switch button ', async () => {
     try {
         const searchPage = userControllerPage.getSearchPage();
         await searchPage.modifySearch();
@@ -124,7 +124,7 @@ test('Test-9 :: Search trips for the opposite direction using by direction switc
     }
 });
 
-test('Test-10 :: Find a specific trips for ticketing and go to the seat plan', async () => {
+test('@PurchaseSingleSeat @PurchaseMultipleSeat Test-10 :: Find a specific trips for ticketing and go to the seat plan', async () => {
      try {
         const tripListPage = userControllerPage.getTripListPage();
         await tripListPage.findTripsAndGoToTheSelectSeatsSection();
@@ -134,7 +134,7 @@ test('Test-10 :: Find a specific trips for ticketing and go to the seat plan', a
     }
 });
 
-test.skip('Test-11 :: Select a single seat from the seat view section', async () => {
+test('@PurchaseSingleSeat Test-11 :: Select a single seat from the seat view section', async () => {
     try {
         const purchaseSingleSeat = userControllerPage.getPurchaseSingleSeat();
         const userBookingDetailsPage = userControllerPage.getUserBookingDetailsPage();
@@ -150,7 +150,7 @@ test.skip('Test-11 :: Select a single seat from the seat view section', async ()
     }
 });
 
-test('Test-12 :: Select multiple seats from the seat view section', async () => {
+test('@PurchaseMultipleSeat Test-12 :: Select multiple seats from the seat view section', async () => {
     try {
         const purchaseMultipleSeat = userControllerPage.getPurchaseMultipleSeat();
         const userBookingDetailsPage = userControllerPage.getUserBookingDetailsPage();

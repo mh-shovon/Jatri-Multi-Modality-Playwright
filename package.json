@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "PurchaseSingleSeat" : "npx playwright test --grep @PurchaseSingleSeat",
+    "PurchaseMultipleSeat" : "npx playwright test --grep @PurchaseMultipleSeat",
+    "run-sequentially": "npm run PurchaseSingleSeat && npm run PurchaseMultipleSeat"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
