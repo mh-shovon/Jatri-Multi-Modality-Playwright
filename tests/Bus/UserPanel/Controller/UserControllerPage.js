@@ -2,11 +2,11 @@ const { HomePage } = require('../Pages/HomePage/HomePage');
 const { LoginPage } = require('../Pages/LoginPage/LoginPage');
 const { SearchPage }  = require('../Pages/SearchPage/SearchPage');
 const { TripListPage } = require('../Pages/TripListPage/TripListPage');
-const { PurchaseSingleSeat } = require('../Pages/Ticketing/PurchaseSingleSeat');
-const { PurchaseMultipleSeat } = require('../Pages/Ticketing/PurchaseMultipleSeat')
-const { UserBookingDetailsPage } = require('../Pages/Ticketing/UserBookingDetailsPage');
-const { SelectingPaymentMethodPage } = require('../Pages/Ticketing/SelectingPaymentMethodPage');
-const { TicketConfirmationPage } = require('../Pages/Ticketing/TicketConfirmationPage');
+const { PurchaseSingleSeat } = require('../Pages/Ticketing/ConfirmTicket/PurchaseSingleSeat');
+const { PurchaseMultipleSeat } = require('../Pages/Ticketing/ConfirmTicket/PurchaseMultipleSeat')
+const { UserBookingDetailsPage } = require('../Pages/Ticketing/ConfirmTicket/UserBookingDetailsPage');
+const { SelectingPaymentMethodPage } = require('../Pages/Ticketing/ConfirmTicket/SelectingPaymentMethodPage');
+const { TicketConfirmationPage } = require('../Pages/Ticketing/ConfirmTicket/TicketConfirmationPage');
 
 class UserControllerPage {
     constructor(page){

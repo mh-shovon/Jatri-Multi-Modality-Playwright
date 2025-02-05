@@ -1,0 +1,4 @@
+class TicketConfirmationMessage{
+    constructor(page) {
+    }
+}
