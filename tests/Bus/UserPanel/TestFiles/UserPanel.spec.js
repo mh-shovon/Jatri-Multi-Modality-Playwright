@@ -166,6 +166,17 @@ test('@PurchaseMultipleSeat Test-12 :: Select multiple seats from the seat view 
     }
 });
 
+test('@PurchaseSingleSeat @PurchaseMultipleSeat Test-13 :: Confirmation logo and message validation', async () => {
+    try {
+        const ticketConfirmationValidationPage = userControllerPage.getTicketConfirmationValidationPage();
+        await ticketConfirmationValidationPage.ticketConfirmationLogo();
+        await ticketConfirmationValidationPage.ticketConfirmationMessage()
+    } catch (error) {
+        console.error('Logo and message not found', error);
+        throw error;
+    }
+});
+
 test.afterAll(async () => {
     await page.pause();
 });

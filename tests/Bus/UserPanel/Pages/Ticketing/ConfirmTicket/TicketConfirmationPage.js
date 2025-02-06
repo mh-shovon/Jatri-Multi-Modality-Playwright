@@ -1,8 +1,9 @@
 class TicketConfirmationPage {
     constructor(page) {
+        this.page = page;
         this.selectMobileBankingFromSandbox = page.getByText(' Mobile Banking ');
         this.selectBkashFromSandbox = page.locator('#menu2 li');
-        this.succesButtonFromOtpPage = page.locator('input[value=\'Success\']')
+        this.succesButtonFromOtpPage = page.locator('input[value=\'Success\']');
     }
 
     async delay(time) {
@@ -18,4 +19,5 @@ class TicketConfirmationPage {
         await this.delay(2000);
     }
 }
+
 module.exports = { TicketConfirmationPage };

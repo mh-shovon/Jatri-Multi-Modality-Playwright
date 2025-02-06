@@ -7,6 +7,7 @@ const { PurchaseMultipleSeat } = require('../Pages/Ticketing/ConfirmTicket/Purch
 const { UserBookingDetailsPage } = require('../Pages/Ticketing/ConfirmTicket/UserBookingDetailsPage');
 const { SelectingPaymentMethodPage } = require('../Pages/Ticketing/ConfirmTicket/SelectingPaymentMethodPage');
 const { TicketConfirmationPage } = require('../Pages/Ticketing/ConfirmTicket/TicketConfirmationPage');
+const {TicketConfirmationValidationPage} = require("../Pages/Ticketing/ConfirmTicket/TicketConfirmationValidationPage");
 
 class UserControllerPage {
     constructor(page){
@@ -19,7 +20,8 @@ class UserControllerPage {
         this.purchaseMultipleSeat = new PurchaseMultipleSeat(this.page);
         this.userBookingDetailsPage = new UserBookingDetailsPage(this.page);
         this.selectingPaymentMethodPage = new SelectingPaymentMethodPage(this.page);
-        this.ticketConfirmationPage = new TicketConfirmationPage(this.page)
+        this.ticketConfirmationPage = new TicketConfirmationPage(this.page);
+        this.ticketConfirmationValidationPage = new TicketConfirmationValidationPage(this.page);
     }
 
     getHomePage(){
@@ -56,6 +58,10 @@ class UserControllerPage {
 
     getTicketConfirmationPage(){
         return this.ticketConfirmationPage;
+    }
+
+    getTicketConfirmationValidationPage(){
+        return this.ticketConfirmationValidationPage;
     }
 }
 module.exports = { UserControllerPage };
